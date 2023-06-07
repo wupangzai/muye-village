@@ -1,5 +1,6 @@
 import Vue, { VNode } from "vue";
 
+// JSX 文件声明
 declare global {
   namespace JSX {
     interface Element extends VNode {}
