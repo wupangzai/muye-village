@@ -2,6 +2,7 @@ import Vue from 'vue';
 
 // 三方库
 import '@/packages/elementui';
+import '@/packages/axios';
 
 // common 组件/func
 import '@/components/common';

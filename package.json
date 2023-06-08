@@ -9,6 +9,7 @@
         "format": "prettier --write \"src/**/*.@(vue|js|ts)\" \"@types/**/*.@(d.ts|ts)\" \"vue.config.js\""
     },
     "dependencies": {
+        "axios": "^1.4.0",
         "core-js": "^3.8.3",
         "element-ui": "^2.15.13",
         "less": "^4.1.3",
