@@ -108,7 +108,10 @@ export default class Test extends Vue {
     padding: 12px 20px 13px 20px;
 
     font-weight: 600;
-    font-size: 16px;
+
+    .el-dialog__title {
+        font-size: 16px;
+    }
 
     .el-dialog__headerbtn {
         position: initial;
