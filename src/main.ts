@@ -4,6 +4,9 @@ import Vue from 'vue';
 import '@/packages/elementui';
 import '@/packages/axios';
 
+// router & store
+import router from '@/router';
+
 // common 组件/func
 import '@/components/common';
 
@@ -13,5 +16,6 @@ import App from './App.vue';
 Vue.config.productionTip = false;
 
 new Vue({
+    router,
     render: (h) => h(App),
 }).$mount('#app');
