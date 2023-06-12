@@ -40,22 +40,24 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { accountRule, passwordRule } from '@/rules/login';
+import { Model_Login } from '@/model';
 
 @Component
 export default class LoginForm extends Vue {
-    form = {
+    form: Model_Login.Form = {
         account: new accountRule(),
         password: new passwordRule(),
     };
 
     submitLogin() {
         const formItemKeys = Object.keys(this.form);
-        // TODO FIXME: 解决这个 typeError
         formItemKeys.forEach((key) => {
-            this.form[key].validate();
+            this.form[key as Model_Login.FormKeys].validate();
         });
 
-        const isExistError = formItemKeys.some((key) => this.form[key].errMsg);
+        const isExistError = formItemKeys.some(
+            (key) => this.form[key as Model_Login.FormKeys].errMsg,
+        );
 
         if (isExistError) {
             this.$message.error('请按照提示修改错误信息');
