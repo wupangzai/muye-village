@@ -8,7 +8,5 @@ import http from '@/packages/axios';
  * @returns boolean TODO FIXME
  */
 export async function login(params: Record<Model_Login.FormKeys, string>) {
-    return await http.postJson<boolean>('/api/login', {
-        params,
-    });
+    return await http.postJson<boolean>('/api/login', params);
 }

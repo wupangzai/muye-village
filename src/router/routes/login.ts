@@ -5,6 +5,7 @@ export const loginRoutes = [
         component: () => import('@/views/login/index.vue'),
         meta: {
             fullScreen: true,
+            permission: false,
         },
     },
 ];

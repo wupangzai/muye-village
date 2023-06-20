@@ -49,7 +49,7 @@ export default class LoginForm extends Vue {
         password: new passwordRule(),
     };
 
-    submitLogin() {
+    async submitLogin() {
         const formItemKeys = Object.keys(this.form);
         formItemKeys.forEach((key) => {
             this.form[key as Model_Login.FormKeys].validate();
@@ -62,6 +62,21 @@ export default class LoginForm extends Vue {
         if (isExistError) {
             this.$message.error('请按照提示修改错误信息');
             return;
+        }
+
+        // TODO: FIXME rm mock
+        const result = await this.$http.postJson<
+            boolean,
+            Record<Model_Login.FormKeys, string>
+        >('/mock/login', {
+            account: this.form.account.value,
+            password: this.form.password.value,
+        });
+
+        if (result) {
+            this.$router.replace({
+                name: 'Home',
+            });
         }
     }
 }

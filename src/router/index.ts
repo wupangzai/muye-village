@@ -8,4 +8,13 @@ const router = new Router({
     routes,
 });
 
+router.beforeEach((to, from, next) => {
+    // 不需要权限的路由直接放行
+    if (!to.meta?.permission) {
+        next();
+        return;
+    }
+    next();
+});
+
 export default router;
