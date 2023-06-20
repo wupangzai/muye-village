@@ -19,7 +19,7 @@ module.exports = defineConfig({
     //devProxy
     devServer: {
         proxy: {
-            '': {
+            '/api': {
                 target: 'https://fanyi.baidu.com', // TODO:FIXME, wait from amagi
                 changeOrigin: true,
             },

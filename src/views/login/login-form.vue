@@ -122,7 +122,7 @@ export default class LoginForm extends Vue {
                     background-image: linear-gradient(
                         to right,
                         #1359a1,
-                        #187a35
+                        #1359a1
                     );
                     transition: width 0.3s linear;
                     border-radius: 4px;

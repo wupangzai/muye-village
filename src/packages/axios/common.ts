@@ -4,7 +4,7 @@ import { axiosInstance, options } from './axiosInstance';
 /**
  * 以下方法中 泛型为约束传入参数的类型或者接受参数的类型
  * @param T 约束接口返回类型的泛型
- * @param R 约束接口传入参数类型的泛型
+ * @param R 约束接口传入参数类型的泛型, 一般可不传，由参数函数参数处决定也行
  */
 
 async function get<T = any, R = any>(
