@@ -3,6 +3,7 @@ import Vue from 'vue';
 // 三方库
 import '@/packages/elementui';
 import '@/packages/axios';
+import '@/mock';
 
 // router & store
 import router from '@/router';

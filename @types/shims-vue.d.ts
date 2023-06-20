@@ -12,3 +12,6 @@ declare module '*.jpeg';
 declare module '*.png';
 declare module '*.svg';
 declare module '*.tiff';
+
+// 三方库
+declare module 'mockjs';
