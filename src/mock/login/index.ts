@@ -6,7 +6,7 @@ Mock.mock('/mock/login', (options: any) => {
         account: 'wzf',
         password: '123456',
     };
-    const params = JSON.parse(options.body).params;
+    const params = JSON.parse(options.body);
     return Object.keys(params).every(
         (key: string) => admin[key as keyof typeof admin] === params[key],
     );
