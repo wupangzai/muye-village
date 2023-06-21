@@ -1,12 +1,36 @@
 <template>
-    <div class="home">home</div>
+    <div class="home" v-loading="visible">
+        <!-- TODO FIXME  rm -->
+        <el-button @click="handler">toggleLoading</el-button>
+    </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Home extends Vue {}
+export default class Home extends Vue {
+    // TODO FIXME  rm
+
+    visible = true;
+
+    handler() {
+        this.visible = !this.visible;
+    }
+}
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+// TODO FIXME  rm
+
+.home {
+    width: 500px;
+    height: 500px;
+    margin-left: 100px;
+    background-color: aqua;
+
+    button {
+        margin-top: 500px;
+    }
+}
+</style>

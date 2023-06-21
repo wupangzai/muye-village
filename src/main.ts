@@ -11,6 +11,9 @@ import router from '@/router';
 // common 组件/func
 import '@/components/common';
 
+// 自定义指令
+import '@/directives'; // loading 需在 elementui 后引入，覆盖其 v-loading
+
 // 根组件
 import App from './App.vue';
 
