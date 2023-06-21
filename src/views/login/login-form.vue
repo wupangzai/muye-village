@@ -77,7 +77,9 @@ export default class LoginForm extends Vue {
             this.$router.replace({
                 name: 'Home',
             });
+            return;
         }
+        this.$message.error('账号或密码错误，请重试');
     }
 }
 </script>
