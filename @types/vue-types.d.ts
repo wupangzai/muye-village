@@ -1,5 +1,7 @@
 // Vue 原型 上的属性声明
-import { createDialog, openFullscreenLoading } from '@/components/common';
+import { createDialog } from '@/components/common/dialog';
+import { openFullscreenLoading } from '@/components/common/fullscreenLoading';
+
 import http from '@/packages/axios';
 
 declare module 'vue/types/vue' {
