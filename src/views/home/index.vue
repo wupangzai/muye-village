@@ -7,7 +7,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { openFullscreenLoading } from '@/components/common/fullscreenLoading';
 
 @Component
 export default class Home extends Vue {
@@ -16,7 +15,7 @@ export default class Home extends Vue {
     visible = true;
 
     async handler() {
-        const a = await openFullscreenLoading('dynamice loading text....');
+        const a = this.$openFullscreenLoading('dynamice loading text....');
 
         this.visible = !this.visible;
     }

@@ -1,10 +1,15 @@
+import { DirectiveBinding, VueConstructor, VNode } from 'vue';
 import Loading from './index.vue';
 
-function insertDom(parent: HTMLBaseElement, el: any) {
+function insertDom(parent: Element, el: Element) {
     parent.appendChild(el);
 }
 
-function toggleLoading(el: any, binding: any) {
+interface El extends HTMLBaseElement {
+    instance: InstanceType<VueConstructor>;
+}
+
+function toggleLoading(el: El, binding: DirectiveBinding<{}>) {
     const renderDom = el.instance.$el;
 
     if (binding.value) {
@@ -19,12 +24,10 @@ function toggleLoading(el: any, binding: any) {
     }
 }
 
-// TODO FIXME 该文件any替换成对应的类型
 // 局部需要 loading 动画的自定义loading
 export default {
     // 绑定时执行
-    bind(el: any, binding: any, vnode: any) {
-        console.log('[  ] >', binding);
+    bind(el: El, binding: DirectiveBinding<{}>, vnode: VNode) {
         const mask = new Loading({
             el: document.createElement('div'),
         });
@@ -36,13 +39,13 @@ export default {
     },
 
     // 所在组件的 VNode 更新时调用--比较更新前后的值
-    update(el: any, binding: { oldValue: any; value: any }) {
+    update(el: El, binding: DirectiveBinding<{}>) {
         if (binding.oldValue !== binding.value) {
             toggleLoading(el, binding);
         }
     },
     // 指令与元素解绑时调用
-    unbind(el: any, binding: any) {
+    unbind(el: El) {
         el.instance && el.instance.$destroy();
         el.instance.$el &&
             el.instance.$el.parentNode &&
