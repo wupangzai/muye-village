@@ -1,7 +1,7 @@
 import ToolTip from './index.vue';
 
 /**
- * 用于给指定元素/组件绑定一个 tooltip 提示
+ * 用于给指定元素/组件绑定一个 tooltip 提示, 可通过第一个修饰符来指定 tooltip 的呼出位置，eg: v-tooltip.bottom
  * 不可嵌套使用，如
  * <div v-tooltip="'1'">
  *   <div v-tooltip="'2'"></div>

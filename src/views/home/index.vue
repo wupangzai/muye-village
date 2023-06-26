@@ -7,6 +7,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { openFullscreenLoading } from '@/components/common/fullscreenLoading';
 
 @Component
 export default class Home extends Vue {
@@ -14,7 +15,9 @@ export default class Home extends Vue {
 
     visible = true;
 
-    handler() {
+    async handler() {
+        const a = await openFullscreenLoading('dynamice loading text....');
+
         this.visible = !this.visible;
     }
 }
@@ -27,7 +30,6 @@ export default class Home extends Vue {
     width: 500px;
     height: 500px;
     margin-left: 100px;
-    background-color: aqua;
 
     button {
         margin-top: 500px;

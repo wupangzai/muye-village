@@ -1,20 +1,24 @@
 <template>
-    <div class="loading">
+    <div class="fullscreen-loading">
         <div class="container">
             <div class="content"></div>
+            <div v-if="description" class="description">{{ description }}</div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
-export default class Loading extends Vue {}
+export default class FullscreenLoading extends Vue {
+    @Prop({ default: '' })
+    description!: string;
+}
 </script>
 
 <style lang="less" scoped>
-.loading {
+.fullscreen-loading {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -23,10 +27,20 @@ export default class Loading extends Vue {}
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
+    flex-direction: column;
     z-index: 999;
     .container {
+        display: flex;
+        flex-direction: column;
         margin: auto;
+        align-items: center;
+        .description {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #ffffff;
+        }
     }
+
     .content {
         width: 48px;
         height: 48px;

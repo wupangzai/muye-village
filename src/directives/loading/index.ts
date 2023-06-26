@@ -24,6 +24,7 @@ function toggleLoading(el: any, binding: any) {
 export default {
     // 绑定时执行
     bind(el: any, binding: any, vnode: any) {
+        console.log('[  ] >', binding);
         const mask = new Loading({
             el: document.createElement('div'),
         });
@@ -41,7 +42,10 @@ export default {
         }
     },
     // 指令与元素解绑时调用
-    unbind(el: { instance: { $destroy: () => any } }, binding: any) {
+    unbind(el: any, binding: any) {
         el.instance && el.instance.$destroy();
+        el.instance.$el &&
+            el.instance.$el.parentNode &&
+            el.instance.$el.parentNode.removeChild(el.instance.$el);
     },
 };
