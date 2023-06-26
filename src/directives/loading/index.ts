@@ -24,7 +24,6 @@ function toggleLoading(el: any, binding: any) {
 export default {
     // 绑定时执行
     bind(el: any, binding: any, vnode: any) {
-        console.log('[  ] >', binding);
         const mask = new Loading({
             el: document.createElement('div'),
         });
