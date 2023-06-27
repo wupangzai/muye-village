@@ -1,7 +1,7 @@
 // 弹窗模板组件
 import CustomDialog from './custom-dialog.vue';
 // 需要时可引入store等在 app.vue 使用的插件
-// import router from '../../router';
+import router from '@/router';
 
 // 是否为 VNode 节点
 const isVNode = (node: unknown) => {
@@ -15,7 +15,7 @@ const isVNode = (node: unknown) => {
 export function createDialog(options?: any) {
     // 不使用 Vue 来extend 模板组件原因见 https://www.yuque.com/u25244778/kdzwbw/qg96drlo3f78zg0u
     const myconstructor = CustomDialog.extend({
-        // router, // router 未开启， TODO:FIXME
+        router,
         // store
     });
 
