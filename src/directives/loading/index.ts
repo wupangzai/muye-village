@@ -28,9 +28,7 @@ function toggleLoading(el: El, binding: DirectiveBinding<{}>) {
 export default {
     // 绑定时执行
     bind(el: El, binding: DirectiveBinding<{}>, vnode: VNode) {
-        const mask = new Loading({
-            el: document.createElement('div'),
-        });
+        const mask = new Loading().$mount();
         el.instance = mask;
 
         if (binding.value) {

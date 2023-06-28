@@ -25,13 +25,13 @@ export function openFullscreenLoading(
         if (lastInstance) {
             closeLoading(lastInstance);
         }
-        const instance = new FullscreenLoading({
-            propsData: {
-                description,
-            },
-        });
 
         try {
+            const instance = new FullscreenLoading({
+                propsData: {
+                    description,
+                },
+            });
             instance.$mount();
             document.body.appendChild(instance.$el);
             lastInstance = instance;
