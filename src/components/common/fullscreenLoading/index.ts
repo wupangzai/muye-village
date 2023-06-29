@@ -16,28 +16,19 @@ function closeLoading(instance: LoadingInstance) {
 /**
  * 创建一个全屏的 loading 动画
  *
- * @returns 返回一个 Promise，创建成功 resolve 一个可以关闭弹窗的函数
+ * @returns 返回一个可以关闭弹窗的函数
  */
-export function openFullscreenLoading(
-    description?: string,
-): Promise<() => void> {
-    return new Promise((resolve, reject) => {
-        if (lastInstance) {
-            closeLoading(lastInstance);
-        }
-
-        try {
-            const instance = new FullscreenLoading({
-                propsData: {
-                    description,
-                },
-            });
-            instance.$mount();
-            document.body.appendChild(instance.$el);
-            lastInstance = instance;
-            resolve(() => closeLoading(instance));
-        } catch (e) {
-            reject(e);
-        }
+export function openFullscreenLoading(description?: string): () => void {
+    if (lastInstance) {
+        closeLoading(lastInstance);
+    }
+    const instance = new FullscreenLoading({
+        propsData: {
+            description,
+        },
     });
+    instance.$mount();
+    document.body.appendChild(instance.$el);
+    lastInstance = instance;
+    return () => closeLoading(instance);
 }
