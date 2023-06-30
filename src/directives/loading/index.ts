@@ -1,11 +1,12 @@
-import { DirectiveBinding, VueConstructor, VNode } from 'vue';
+import { VueConstructor, VNode, DirectiveOptions } from 'vue';
+import { DirectiveBinding } from '@vue/composition-api';
 import Loading from './index.vue';
 
 function insertDom(parent: Element, el: Element) {
     parent.appendChild(el);
 }
 
-interface El extends HTMLBaseElement {
+interface El extends HTMLElement {
     instance: InstanceType<VueConstructor>;
 }
 
@@ -49,4 +50,4 @@ export default {
             el.instance.$el.parentNode &&
             el.instance.$el.parentNode.removeChild(el.instance.$el);
     },
-};
+} as unknown as DirectiveOptions;

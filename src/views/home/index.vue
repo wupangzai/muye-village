@@ -6,19 +6,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+export default {
+    name: 'AppHome',
+};
+</script>
 
-@Component
-export default class Home extends Vue {
-    // TODO FIXME  rm
+<script lang="ts" setup>
+const { proxy: _this } = getCurrentInstance() as ComponentInternalInstance;
 
-    visible = true;
+let visible = $ref(true);
 
-    async handler() {
-        const a = this.$openFullscreenLoading('dynamice loading text....');
+function handler() {
+    const a = _this.$openFullscreenLoading('dynamice loading text....');
 
-        this.visible = !this.visible;
-    }
+    visible = !visible;
 }
 </script>
 

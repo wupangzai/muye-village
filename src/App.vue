@@ -6,8 +6,6 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
 @Component
 export default class App extends Vue {
     // 是否全屏展示

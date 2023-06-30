@@ -2,7 +2,7 @@ export const homeRoutes = [
     {
         path: '/',
         name: 'Home',
-        component: () => import('@/views/home/index.vue'),
+        component: require('@/views/home/index.vue').default, // 用import会报错，home.vue.ts is not a module
         meta: {
             permission: true,
         },

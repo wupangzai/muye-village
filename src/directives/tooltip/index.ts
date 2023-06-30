@@ -1,7 +1,9 @@
-import { DirectiveBinding, VueConstructor, VNode, VNodeDirective } from 'vue';
+import { VueConstructor, VNode, VNodeDirective, DirectiveOptions } from 'vue';
+import { DirectiveBinding } from '@vue/composition-api';
+
 import ToolTip from './index.vue';
 
-interface El extends HTMLBaseElement {
+interface El extends HTMLElement {
     instance: InstanceType<VueConstructor>;
 }
 
@@ -44,4 +46,4 @@ export default {
         el.instance && el.instance.$destroy();
         document.body.removeChild(el.instance.$el);
     },
-};
+} as unknown as DirectiveOptions;
