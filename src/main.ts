@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import VueCompositionApi from '@vue/composition-api';
 
 // 三方库
 import '@/packages/elementui';
@@ -18,6 +19,8 @@ import '@/directives'; // loading 需在 elementui 后引入，覆盖其 v-loadi
 import App from './App.vue';
 
 Vue.config.productionTip = false;
+
+Vue.use(VueCompositionApi);
 
 new Vue({
     router,

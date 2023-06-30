@@ -1,8 +1,10 @@
+const ScriptSetup = require('unplugin-vue2-script-setup/webpack').default;
 const AutoImport = require('unplugin-auto-import/webpack');
 const ImportList = require('./src/packages/auto-import/index.ts');
 const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
+    parallel: false,
     transpileDependencies: true,
 
     css: {
@@ -18,6 +20,9 @@ module.exports = defineConfig({
         resolve: { extensions: ['.ts', '.tsx', '.js', '.json', '.vue'] }, // 默认导入文件目录下的 index.* 这些文件
 
         plugins: [
+            ScriptSetup({
+                reactivityTransform: true, // 开启响应式语法糖
+            }),
             AutoImport({
                 includes: [/\.vue$/, /\.vue\?vue/], // .vue
                 imports: [

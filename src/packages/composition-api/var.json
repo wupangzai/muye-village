@@ -1,0 +1,7 @@
+{
+    "globals": {
+        "$ref": true,
+        "$computed": true,
+        "$$": true
+    }
+}
