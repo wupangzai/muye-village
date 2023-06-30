@@ -4,6 +4,7 @@ module.exports = {
         node: true,
     },
     extends: [
+        './.eslintrc-auto-import.json',
         'plugin:vue/essential',
         'eslint:recommended',
         'plugin:prettier/recommended',
