@@ -38,49 +38,53 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+export default {
+    name: 'LoginForm',
+};
+</script>
+
+<script lang="ts" setup>
 import { accountRule, passwordRule } from '@/rules/login';
 import { Model_Login } from '@/model';
 
-@Component
-export default class LoginForm extends Vue {
-    form: Model_Login.Form = {
-        account: new accountRule(),
-        password: new passwordRule(),
-    };
+const { proxy: _this } = getCurrentInstance() as ComponentInternalInstance;
 
-    async submitLogin() {
-        const formItemKeys = Object.keys(this.form);
-        formItemKeys.forEach((key) => {
-            this.form[key as Model_Login.FormKeys].validate();
-        });
+const form: Model_Login.Form = $ref({
+    account: new accountRule(),
+    password: new passwordRule(),
+});
 
-        const isExistError = formItemKeys.some(
-            (key) => this.form[key as Model_Login.FormKeys].errMsg,
-        );
+async function submitLogin() {
+    const formItemKeys = Object.keys(form);
+    formItemKeys.forEach((key) => {
+        form[key as Model_Login.FormKeys].validate();
+    });
 
-        if (isExistError) {
-            this.$message.error('请按照提示修改错误信息');
-            return;
-        }
+    const isExistError = formItemKeys.some(
+        (key) => form[key as Model_Login.FormKeys].errMsg,
+    );
 
-        // TODO: FIXME rm mock
-        const result = await this.$http.postJson<
-            boolean,
-            Record<Model_Login.FormKeys, string>
-        >('/mock/login', {
-            account: this.form.account.value,
-            password: this.form.password.value,
-        });
-
-        if (result) {
-            this.$router.replace({
-                name: 'Home',
-            });
-            return;
-        }
-        this.$message.error('账号或密码错误，请重试');
+    if (isExistError) {
+        _this.$message.error('请按照提示修改错误信息');
+        return;
     }
+
+    // TODO: FIXME rm mock
+    const result = await _this.$http.postJson<
+        boolean,
+        Record<Model_Login.FormKeys, string>
+    >('/mock/login', {
+        account: form.account.value,
+        password: form.password.value,
+    });
+
+    if (result) {
+        _this.$router.replace({
+            name: 'Home',
+        });
+        return;
+    }
+    _this.$message.error('账号或密码错误，请重试');
 }
 </script>
 
