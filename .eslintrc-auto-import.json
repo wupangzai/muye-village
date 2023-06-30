@@ -52,6 +52,7 @@
     "useSlots": true,
     "Vue": true,
     "watch": true,
+    "Watch": true,
     "watchEffect": true
   }
 }

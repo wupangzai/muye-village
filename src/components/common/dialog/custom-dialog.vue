@@ -19,8 +19,6 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch, Provide } from 'vue-property-decorator';
-
 @Component
 export default class Test extends Vue {
     @Prop()

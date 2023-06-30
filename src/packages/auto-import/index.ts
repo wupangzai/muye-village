@@ -9,6 +9,7 @@ const autoImportListFromVue = [
     'Mixins',
     'Model',
     'ModelSync',
+    'Watch',
 ];
 
 module.exports = {

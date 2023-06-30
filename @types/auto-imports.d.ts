@@ -53,6 +53,7 @@ declare global {
     const useSlots: typeof import('@vue/composition-api')['useSlots'];
     const Vue: typeof import('vue-property-decorator')['Vue'];
     const watch: typeof import('@vue/composition-api')['watch'];
+    const Watch: typeof import('vue-property-decorator')['Watch'];
     const watchEffect: typeof import('@vue/composition-api')['watchEffect'];
 }
 export {};
