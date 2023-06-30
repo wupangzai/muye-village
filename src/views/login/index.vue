@@ -7,14 +7,13 @@
 </template>
 
 <script lang="ts">
-import { LoginCard } from '@/components/login';
+export default {
+    name: 'AppLogin',
+};
+</script>
 
-@Component({
-    components: {
-        LoginCard,
-    },
-})
-export default class Login extends Vue {}
+<script lang="ts" setup>
+import { LoginCard } from '@/components/login';
 </script>
 
 <style lang="less" scoped>

@@ -6,17 +6,20 @@
 </template>
 
 <script lang="ts">
-@Component
-export default class Home extends Vue {
-    // TODO FIXME  rm
+export default {
+    name: 'AppHome',
+};
+</script>
 
-    visible = true;
+<script lang="ts" setup>
+const { proxy: _this } = getCurrentInstance() as ComponentInternalInstance;
 
-    async handler() {
-        const a = this.$openFullscreenLoading('dynamice loading text....');
+let visible = $ref(true);
 
-        this.visible = !this.visible;
-    }
+function handler() {
+    const a = _this.$openFullscreenLoading('dynamice loading text....');
+
+    visible = !visible;
 }
 </script>
 
