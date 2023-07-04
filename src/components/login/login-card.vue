@@ -14,15 +14,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import LoginForm from './login-form.vue';
+export default {
+    name: 'LoginCard',
+};
+</script>
 
-@Component({
-    components: {
-        LoginForm,
-    },
-})
-export default class LoginCard extends Vue {}
+<script lang="ts" setup>
+import LoginForm from './login-form.vue';
 </script>
 
 <style lang="less" scoped>

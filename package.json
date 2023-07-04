@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build",
+        "build": "vue-tsc --noEmit && vue-cli-service build",
         "lint": "vue-cli-service lint",
         "format": "prettier --write \"src/**/*.@(vue|js|ts)\" \"@types/**/*.@(d.ts|ts)\" \"vue.config.js\""
     },
@@ -37,7 +37,8 @@
         "typescript": "~4.5.5",
         "unplugin-auto-import": "0.7.2",
         "unplugin-vue2-script-setup": "^0.11.4",
-        "vue-template-compiler": "2.6.14"
+        "vue-template-compiler": "2.6.14",
+        "vue-tsc": "^1.8.3"
     },
     "eslintConfig": {
         "root": true,

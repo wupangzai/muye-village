@@ -5,7 +5,7 @@ const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
     parallel: false,
-    transpileDependencies: true,
+    transpileDependencies: ['@vue/composition-api'],
 
     css: {
         loaderOptions: {
@@ -47,6 +47,11 @@ module.exports = defineConfig({
                 },
             }),
         ],
+    },
+
+    chainWebpack(config) {
+        // disable type check and let `vue-tsc` handles it
+        config.plugins.delete('fork-ts-checker'); // 不让 ts 来检测，否则 转换后不是一个模块，引起变量重叠，is not a module 等问题
     },
 
     //devProxy

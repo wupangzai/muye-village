@@ -6,13 +6,16 @@
 </template>
 
 <script lang="ts">
-@Component
-export default class App extends Vue {
-    // 是否全屏展示
-    get isRouteFullScreen() {
-        return this.$route.meta?.fullScreen;
-    }
-}
+export default {
+    name: 'RootApp',
+};
+</script>
+<script lang="ts" setup>
+const { proxy: _this } = getCurrentInstance() as ComponentInternalInstance;
+
+const isRouteFullScreen = $computed<boolean>(() => {
+    return _this.$route.meta?.fullScreen;
+});
 </script>
 
 <style></style>
