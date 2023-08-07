@@ -4,7 +4,12 @@
             <img src="http://flamboyamedia.com/images/logo.png" alt="muye" />
         </div>
         <div class="nav-right">
-            <div v-for="item in navList" :key="item.url" class="nav-right-item">
+            <div
+                v-for="item in navList"
+                :key="item.url"
+                class="nav-right-item"
+                @click="() => handleClick(item.url)"
+            >
                 {{ item.name }}
             </div>
         </div>
@@ -18,23 +23,39 @@ export default {
 </script>
 
 <script lang="ts" setup>
-const navList: {
+interface NavOption {
     name: string;
     url: string;
-}[] = [
-    {
-        name: 'HOME',
-        url: 'home',
-    },
-    {
-        name: 'LOGIN',
-        url: 'login',
-    },
-    {
-        name: 'ABOUT US',
-        url: '',
-    },
-];
+    clickFn?: () => void;
+}
+
+interface Props {
+    navList: NavOption[];
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    navList: () => [
+        {
+            name: 'HOME',
+            url: 'home',
+            clickFn: () => {},
+        },
+        {
+            name: 'LOGIN',
+            url: 'login',
+            clickFn: () => {},
+        },
+        {
+            name: 'ABOUT US',
+            url: '',
+            clickFn: () => {},
+        },
+    ],
+});
+
+function handleClick(url: string) {
+    props.navList.find((navOption) => navOption.url === url)?.clickFn?.();
+}
 </script>
 
 <style lang="less" scoped>
