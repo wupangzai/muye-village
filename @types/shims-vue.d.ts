@@ -15,3 +15,4 @@ declare module '*.tiff';
 
 // 三方库
 declare module 'mockjs';
+declare module 'wowjs';

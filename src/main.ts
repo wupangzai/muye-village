@@ -5,6 +5,7 @@ import VueCompositionApi from '@vue/composition-api';
 import '@/packages/elementui';
 import '@/packages/axios';
 import '@/mock';
+import '@/packages/wowjs';
 
 // router & store
 import router from '@/router';
