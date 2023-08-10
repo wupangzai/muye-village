@@ -1,15 +1,17 @@
 <template>
     <div class="welcome-description">
-        <div class="welcome-description-top">
+        <div class="welcome-description-top wow fadeInUp">
             <div class="welcome-description-title">{{ title }}</div>
             <div class="welcome-description-sub-title">
                 {{ subTitle }}
             </div>
         </div>
-        <div class="welcome-description-middle">{{ middleTitle }}</div>
+        <div class="welcome-description-middle wow fadeInUp">
+            {{ middleTitle }}
+        </div>
         <div class="welcome-description-bottom">
             <div
-                class="bottom-card-item"
+                class="bottom-card-item wow fadeInUp"
                 v-for="(config, index) in cardConfigList"
                 :key="index"
             >
@@ -36,6 +38,12 @@ export default {
 </script>
 
 <script lang="ts" setup>
+const { proxy: _this } = getCurrentInstance() as ComponentInternalInstance;
+
+onMounted(async () => {
+    _this.$wow.init();
+});
+
 const title = 'Hire us for anything';
 
 const subTitle = "as long as there's space for us to be creative!";
@@ -65,7 +73,6 @@ const cardConfigList = [
 <style lang="less" scoped>
 .welcome-description {
     width: 100%;
-    height: 450px;
     background: #ffffff;
     padding: 150px 5% 100px 5%;
 
