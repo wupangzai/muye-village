@@ -18,4 +18,8 @@ const isRouteFullScreen = $computed<boolean>(() => {
 });
 </script>
 
-<style></style>
+<style lang="less" scoped>
+#app {
+    height: 100%;
+}
+</style>
