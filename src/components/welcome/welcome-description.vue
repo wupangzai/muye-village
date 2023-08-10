@@ -38,12 +38,6 @@ export default {
 </script>
 
 <script lang="ts" setup>
-const { proxy: _this } = getCurrentInstance() as ComponentInternalInstance;
-
-onMounted(async () => {
-    _this.$wow.init();
-});
-
 const title = 'Hire us for anything';
 
 const subTitle = "as long as there's space for us to be creative!";

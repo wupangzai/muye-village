@@ -1,8 +1,12 @@
 <template>
     <el-container direction="vertical">
-        <Nav></Nav>
+        <el-header>
+            <Nav></Nav>
+        </el-header>
         <welcome-fish />
         <welcome-description />
+        <welcome-photo-list />
+        <welcome-footer />
     </el-container>
 </template>
 
@@ -14,7 +18,18 @@ export default {
 
 <script lang="ts" setup>
 import Nav from '@/components/nav/index.vue';
-import { welcomeFish, welcomeDescription } from '@/components/welcome';
+import {
+    welcomeFish,
+    welcomeDescription,
+    WelcomePhotoList,
+    WelcomeFooter,
+} from '@/components/welcome';
+
+const { proxy: _this } = getCurrentInstance() as ComponentInternalInstance;
+
+onMounted(async () => {
+    await _this.$wow.init();
+});
 </script>
 
 <style lang="less" scoped>
