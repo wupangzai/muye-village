@@ -84,9 +84,11 @@ function handleClick(url: string) {
             color: #ffffff;
             font-size: 12px;
             margin-right: 20px;
+            transition: all 0.5s;
 
             &:hover {
                 cursor: pointer;
+                opacity: 0.5;
             }
 
             &:nth-last-child(1) {
