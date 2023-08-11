@@ -29,13 +29,15 @@ export default {
 </script>
 
 <script lang="ts" setup>
+import { RefValue } from 'unplugin-vue2-script-setup/ref-macros';
+
 const { proxy: _this } = getCurrentInstance() as ComponentInternalInstance;
 
 const setClass = (index: number): string => {
     return `el-${index}`;
 };
 
-const title: string[] = [
+const title = [
     'Being one among everyone is boring. So,',
     'we make you unique',
     'we make you big',
@@ -43,14 +45,14 @@ const title: string[] = [
     'we make you ',
 ];
 // 让字体循环变换
-let i: number = $ref(-1);
-const changeText = (): void => {
-    setTimeout((): void => {
+let i: RefValue<number> = $ref(-1);
+const changeText = () => {
+    setTimeout(() => {
         if (i === -1) {
             i++;
         }
     }, 0);
-    setInterval((): void => {
+    setInterval(() => {
         if (i < title.length - 1) {
             i++;
         } else {
@@ -87,7 +89,7 @@ onMounted(() => {
         height: 72px;
         display: flex;
         justify-content: center;
-        align-items: end;
+        align-items: flex-end;
         margin: 0 7px;
         transition: all 2s ease-in-out;
 
@@ -110,6 +112,8 @@ onMounted(() => {
     height: 50px;
     color: #ffffff;
     position: relative;
+    letter-spacing: 1px;
+    font-weight: 300;
 
     span {
         display: block;
