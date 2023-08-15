@@ -89,29 +89,46 @@ const setClass = (index: number) => {
 // 修改特殊鱼的class
 const setSpecialFish = (fishRef: any[]) => {
     setTimeout(() => {
-        fishRef[0].children[0].classList.add('unique');
-        fishRef[0].children[1].classList.add('unique');
-        setTimeout(() => {
-            fishRef[0].classList.add('big');
+        if (stopAnimate()) {
+            fishRef[0].children[0].classList.add('unique');
+            fishRef[0].children[1].classList.add('unique');
             setTimeout(() => {
-                fishRef[0].classList.add('stand-apart');
-                setTimeout(() => {
-                    showCommon = false;
-                    fishRef[0].classList.add('you');
+                if (stopAnimate()) {
+                    fishRef[0].classList.add('big');
                     setTimeout(() => {
-                        fishRef[0].classList.remove(
-                            'big',
-                            'stand-apart',
-                            'you',
-                        );
-                        console.log(fishRef[0].children[0].classList);
-                        fishRef[0].children[0].classList.remove('unique');
-                        fishRef[0].children[1].classList.remove('unique');
-                        showCommon = true;
+                        if (stopAnimate()) {
+                            fishRef[0].classList.add('stand-apart');
+                            setTimeout(() => {
+                                if (stopAnimate()) {
+                                    showCommon = false;
+                                    fishRef[0].classList.add('you');
+                                    setTimeout(() => {
+                                        if (stopAnimate()) {
+                                            fishRef[0].classList.remove(
+                                                'big',
+                                                'stand-apart',
+                                                'you',
+                                            );
+                                            console.log(
+                                                fishRef[0].children[0]
+                                                    .classList,
+                                            );
+                                            fishRef[0].children[0].classList.remove(
+                                                'unique',
+                                            );
+                                            fishRef[0].children[1].classList.remove(
+                                                'unique',
+                                            );
+                                            showCommon = true;
+                                        }
+                                    }, 3000);
+                                }
+                            }, 3000);
+                        }
                     }, 3000);
-                }, 3000);
+                }
             }, 3000);
-        }, 3000);
+        }
     }, 3000);
 };
 
@@ -124,7 +141,7 @@ const title = [
 ];
 // 让字体循环变换及控制所有鱼的出现
 let i: RefValue<number> = $ref(-1);
-const changeText = () => {
+const changeText = (specialFishRef: any[]) => {
     setTimeout(() => {
         // 展示所有鱼图标
         showAllFish = true;
@@ -137,13 +154,20 @@ const changeText = () => {
             i++;
         } else {
             i = 0;
+            setSpecialFish(specialFishRef);
         }
     }, 3000);
 };
 
+// 当不是welcome页面时返回false
+const stopAnimate = () => {
+    const currentRoute = _this.$route;
+    return currentRoute.name === 'Welcome' ? true : false;
+};
+
 onMounted(() => {
-    changeText();
     const specialFishRef: any = _this.$refs['specialFish'];
+    changeText(specialFishRef);
     setSpecialFish(specialFishRef);
 });
 </script>
