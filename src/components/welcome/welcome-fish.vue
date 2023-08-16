@@ -71,23 +71,22 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { RefValue } from 'unplugin-vue2-script-setup/ref-macros';
-
 const { proxy: _this } = getCurrentInstance() as ComponentInternalInstance;
+const specialFish = $ref<HTMLBaseElement[] | null>(null);
 
 // 设置所有鱼的显示隐藏
-let showAllFish: RefValue<boolean> = $ref(false);
+let showAllFish = $ref(false);
 // 修改普通鱼的class
-let showCommon: RefValue<boolean> = $ref(true);
-const setClass = (index: number) => {
+let showCommon = $ref(true);
+function setClass(index: number): string {
     if (showAllFish === true) {
         return `el-${index} el-show`;
     }
     return `el-${index}`;
-};
+}
 
 // 修改特殊鱼的class
-const setSpecialFish = (fishRef: any[]) => {
+function setSpecialFish(fishRef: HTMLBaseElement[]) {
     setTimeout(() => {
         if (stopAnimate()) {
             fishRef[0].children[0].classList.add('unique');
@@ -130,7 +129,7 @@ const setSpecialFish = (fishRef: any[]) => {
             }, 3000);
         }
     }, 3000);
-};
+}
 
 const title = [
     'Being one among everyone is boring. So,',
@@ -140,13 +139,14 @@ const title = [
     'we make you ',
 ];
 // 让字体循环变换及控制所有鱼的出现
-let i: RefValue<number> = $ref(-1);
-const changeText = (specialFishRef: any[]) => {
+let i = $ref(-1);
+function changeText(specialFish: HTMLBaseElement[]) {
     setTimeout(() => {
         // 展示所有鱼图标
         showAllFish = true;
         if (i === -1) {
             i++;
+            setSpecialFish(specialFish);
         }
     }, 0);
     setInterval(() => {
@@ -154,21 +154,19 @@ const changeText = (specialFishRef: any[]) => {
             i++;
         } else {
             i = 0;
-            setSpecialFish(specialFishRef);
+            setSpecialFish(specialFish);
         }
     }, 3000);
-};
+}
 
 // 当不是welcome页面时返回false
-const stopAnimate = () => {
+function stopAnimate(): boolean {
     const currentRoute = _this.$route;
     return currentRoute.name === 'Welcome' ? true : false;
-};
+}
 
 onMounted(() => {
-    const specialFishRef: any = _this.$refs['specialFish'];
-    changeText(specialFishRef);
-    setSpecialFish(specialFishRef);
+    changeText(specialFish);
 });
 </script>
 
@@ -221,7 +219,7 @@ onMounted(() => {
             }
 
             .big {
-                background: url('');
+                background: url('/');
                 width: 85px;
                 left: 50%;
                 transform: translateX(-50%);
