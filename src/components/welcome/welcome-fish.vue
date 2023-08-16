@@ -87,6 +87,8 @@ function setClass(index: number): string {
 
 function startAnimate(callback: () => void, delay = 3000): Promise<void> {
     return new Promise((resovle) => {
+        console.log(specialFish);
+
         setTimeout(() => {
             stopAnimate() && callback();
             resovle();
@@ -143,6 +145,15 @@ const title = [
 ];
 // 让字体循环变换及控制所有鱼的出现
 let i = $ref(-1);
+// 动画循环的定时器
+const interval = setInterval(() => {
+    if (i < title.length - 1) {
+        i++;
+    } else {
+        i = 0;
+        setSpecialFish(specialFish);
+    }
+}, 3000);
 function changeText(specialFish: HTMLBaseElement[]) {
     setTimeout(() => {
         // 展示所有鱼图标
@@ -152,24 +163,20 @@ function changeText(specialFish: HTMLBaseElement[]) {
             setSpecialFish(specialFish);
         }
     }, 0);
-    setInterval(() => {
-        if (i < title.length - 1) {
-            i++;
-        } else {
-            i = 0;
-            setSpecialFish(specialFish);
-        }
-    }, 3000);
+    interval;
 }
 
 // 当不是welcome页面时返回false
 function stopAnimate(): boolean {
-    const currentRoute = _this.$route;
-    return currentRoute.name === 'Welcome' ? true : false;
+    return _this.$route.name === 'Welcome' && specialFish.length !== 0;
 }
 
 onMounted(() => {
     changeText(specialFish);
+});
+
+onBeforeUnmount(() => {
+    clearInterval(interval);
 });
 </script>
 
