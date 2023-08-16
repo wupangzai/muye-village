@@ -85,50 +85,53 @@ function setClass(index: number): string {
     return `el-${index}`;
 }
 
+function startAnimate(callback: () => void, delay = 3000): Promise<void> {
+    return new Promise((resovle) => {
+        setTimeout(() => {
+            stopAnimate() && callback();
+            resovle();
+        }, delay);
+    });
+}
+
 // 修改特殊鱼的class
-function setSpecialFish(fishRef: HTMLBaseElement[]) {
-    setTimeout(() => {
-        if (stopAnimate()) {
+async function setSpecialFish(fishRef: HTMLBaseElement[]) {
+    const animateCallBackList = [
+        // unique
+        () => {
             fishRef[0].children[0].classList.add('unique');
             fishRef[0].children[1].classList.add('unique');
-            setTimeout(() => {
-                if (stopAnimate()) {
-                    fishRef[0].classList.add('big');
-                    setTimeout(() => {
-                        if (stopAnimate()) {
-                            fishRef[0].classList.add('stand-apart');
-                            setTimeout(() => {
-                                if (stopAnimate()) {
-                                    showCommon = false;
-                                    fishRef[0].classList.add('you');
-                                    setTimeout(() => {
-                                        if (stopAnimate()) {
-                                            fishRef[0].classList.remove(
-                                                'big',
-                                                'stand-apart',
-                                                'you',
-                                            );
-                                            console.log(
-                                                fishRef[0].children[0]
-                                                    .classList,
-                                            );
-                                            fishRef[0].children[0].classList.remove(
-                                                'unique',
-                                            );
-                                            fishRef[0].children[1].classList.remove(
-                                                'unique',
-                                            );
-                                            showCommon = true;
-                                        }
-                                    }, 3000);
-                                }
-                            }, 3000);
-                        }
-                    }, 3000);
-                }
-            }, 3000);
-        }
-    }, 3000);
+        },
+
+        // big
+        () => {
+            fishRef[0].classList.add('big');
+        },
+
+        // stand-apart
+        () => {
+            fishRef[0].classList.add('stand-apart');
+        },
+
+        // brand
+        () => {
+            showCommon = false;
+            fishRef[0].classList.add('you');
+        },
+
+        () => {
+            fishRef[0].classList.remove('big', 'stand-apart', 'you');
+            console.log(fishRef[0].children[0].classList);
+            fishRef[0].children[0].classList.remove('unique');
+            fishRef[0].children[1].classList.remove('unique');
+            showCommon = true;
+        },
+    ];
+
+    // forEach 不支持await
+    for (const callback of animateCallBackList) {
+        await startAnimate(callback);
+    }
 }
 
 const title = [
