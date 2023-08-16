@@ -1,12 +1,14 @@
 <template>
     <el-container direction="vertical">
-        <el-header>
+        <el-header height="50px">
             <app-nav :navList="navList" />
         </el-header>
-        <welcome-fish />
-        <welcome-description />
-        <welcome-photo-list />
-        <welcome-footer />
+        <el-main>
+            <welcome-fish />
+            <welcome-description />
+            <welcome-photo-list />
+            <welcome-footer />
+        </el-main>
     </el-container>
 </template>
 
@@ -67,5 +69,9 @@ const navList = [
     width: 100%;
     top: 0;
     left: 0;
+}
+
+.el-main {
+    padding: 0;
 }
 </style>
