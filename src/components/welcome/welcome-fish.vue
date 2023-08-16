@@ -87,8 +87,6 @@ function setClass(index: number): string {
 
 function startAnimate(callback: () => void, delay = 3000): Promise<void> {
     return new Promise((resovle) => {
-        console.log(specialFish);
-
         setTimeout(() => {
             stopAnimate() && callback();
             resovle();
